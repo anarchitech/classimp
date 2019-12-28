@@ -16,12 +16,12 @@
       (cl:values new-version major minor)))
   (cl:defun %v= (req)
     (cl:ecase req
-      (:3.0-3.3 (cl:member *version* '(:3.0 :3.1 :3.2 :3.3))) ;; exact versions
-      (:3.0+ (cl:member *version* '(:3.0 :3.1 :3.2 :3.3)))
-      (:3.1+ (cl:member *version* '(:3.1 :3.2 :3.3)))
-      (:3.2+ (cl:member *version* '(:3.2 :3.3)))
-      (:3.3+ (cl:member *version* '(:3.3)))
-      (:>3.3 ()))))
+      (:4.0-4.3 (cl:member *version* '(:4.0 :4.1 :4.2 :4.3))) ;; exact versions
+      (:4.0+ (cl:member *version* '(:4.0 :4.1 :4.2 :4.3)))
+      (:4.1+ (cl:member *version* '(:4.1 :4.2 :4.3)))
+      (:4.2+ (cl:member *version* '(:4.2 :4.3)))
+      (:4.3+ (cl:member *version* '(:4.3)))
+      (:>4.3 ()))))
 
 (cl:eval-when (:compile-toplevel)
   (cl:setf *compiled* cl:t)
@@ -30,9 +30,9 @@
     (cl:multiple-value-bind (new-version major minor)
         (get-version-keyword)
       (cl:when (cl:and major minor)
-        (cl:unless (cl:and (cl:= major 3)
+        (cl:unless (cl:and (cl:= major 4)
                            (cl:<= 0 minor 3))
-          (cl:error "trying to link against unsupported version of assimp. 3.0-3.3.x supported, got version ~a.~a"
+          (cl:error "trying to link against unsupported version of assimp. 4.0-4.3.x supported, got version ~a.~a"
                     major minor))
         (cl:setf *version* new-version)))))
 
@@ -41,9 +41,9 @@
     (cl:multiple-value-bind (new-version major minor)
         (get-version-keyword)
       (cl:when (cl:and major minor)
-        (cl:unless (cl:and (cl:= major 3)
+        (cl:unless (cl:and (cl:= major 4)
                            (cl:<= 0 minor 3))
-          (cl:error "trying to link against unsupported version of assimp. 3.0-3.3.x supported, got version ~a.~a"
+          (cl:error "trying to link against unsupported version of assimp. 4.0-4.3.x supported, got version ~a.~a"
                     major minor))
         (cl:cond
           ((cl:and *compiled* (cl:eql new-version *version*))
@@ -71,6 +71,12 @@
             collect (cl:second f)
           else unless v
                  collect f)))
+
+;; 12272019 -- these may all need to be futzed with to match current
+;; conventions of 5.0+
+;; * UPDATE: That didn't work, apparently there's a baked in 4.1 flavor
+;;   either on parrotos or their (Debian) build of sbcl ... or gcc. or
+;;   clang.  wtf knows.
 
 (cffi:defcstruct ai-string ;; 3.0+
   (length size-t)
@@ -194,6 +200,24 @@
   (:ai-texture-type-reflection 11)
   (:ai-texture-type-unknown 12))
 
+;; 12292019: Get these errors, similar for all ai-blah
+; in: DEFCSTRUCT/V AI-TEXTURE
+;     (%OPEN-ASSET-IMPORT-LIBRARY::DEFCSTRUCT/V %OPEN-ASSET-IMPORT-LIBRARY:AI-TEXTURE
+;       (%OPEN-ASSET-IMPORT-LIBRARY:M-WIDTH :UNSIGNED-INT)
+;       (%OPEN-ASSET-IMPORT-LIBRARY:M-HEIGHT :UNSIGNED-INT)
+;       (:|3.0-3.3| (%OPEN-ASSET-IMPORT-LIBRARY:ACH-FORMAT-HINT :CHAR :COUNT 4))
+;       (:>3.3 (%OPEN-ASSET-IMPORT-LIBRARY:ACH-FORMAT-HINT :CHAR :COUNT 9))
+;       (%OPEN-ASSET-IMPORT-LIBRARY:PC-DATA
+;        (:POINTER (:STRUCT %OPEN-ASSET-IMPORT-LIBRARY:AI-TEXEL))))
+; 
+; caught COMMON-LISP:ERROR:
+;   (during macroexpansion of (DEFCSTRUCT/V AI-TEXTURE
+;     ...))
+;   :|3.0-3.3| fell through COMMON-LISP:ECASE expression.
+;   Wanted one of (:|4.0-4.3| :4.0+ :4.1+ :4.2+ :4.3+ :>4.3).
+
+
+
 (cffi:defcstruct ai-material-property ;; 3.0+
   (m-key (:struct ai-string))
   (m-semantic ai-texture-type)
@@ -265,7 +289,7 @@
   (m-children (:pointer (:pointer (:struct ai-node))))
   (m-num-meshes :unsigned-int)
   (m-meshes (:pointer :unsigned-int))
-  (:3.1+ (m-metadata (:pointer (:struct ai-metadata))))) ;; 3.1+
+  (:4.1+ (m-metadata (:pointer (:struct ai-metadata))))) ;; 3.1+
 
 (cffi:defcstruct ai-color-4d ;; 3.0+
   (r :float)
@@ -339,8 +363,8 @@
   (m-width :unsigned-int)
   (m-height :unsigned-int)
   ;; ach-format-hint changed size some time after 3.3
-  (:3.0-3.3 (ach-format-hint :char :count 4))
-  (:>3.3 (ach-format-hint :char :count 9))
+  (:4.0-4.3 (ach-format-hint :char :count 4))
+  (:>4.3 (ach-format-hint :char :count 9))
   (pc-data (:pointer (:struct ai-texel))))
 
 (cffi:defcenum (ai-light-source-type :int) ;; 3.0+
@@ -356,7 +380,7 @@
   (m-type ai-light-source-type)
   (m-position (:struct ai-vector-3d))
   (m-direction (:struct ai-vector-3d))
-  (:3.3+ (m-up (:struct ai-vector-3d))) ;; 3.3
+  (:4.3+ (m-up (:struct ai-vector-3d))) ;; 3.3
   (m-attenuation-constant :float)
   (m-attenuation-linear :float)
   (m-attenuation-quadratic :float)
@@ -365,7 +389,7 @@
   (m-color-ambient (:struct ai-color-3d))
   (m-angle-inner-cone :float)
   (m-angle-outer-cone :float)
-  (:3.3+ (m-size (:struct ai-vector-2d))))
+  (:4.3+ (m-size (:struct ai-vector-2d))))
 
 (cffi:defcstruct ai-scene ;; 3.0+
   (m-flags :unsigned-int)
