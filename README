@@ -1,12 +1,14 @@
-classimp
-========
 
-common lisp/cffi bindings for Open Asset Import Library (http://assimp.sourceforge.net/)
+# classimp
 
-Should support assimp versions 3.0 to 3.3.x. Version to support is
+
+common lisp/cffi bindings for Open Asset Import Library (http://www.assimp.org/)
+(https://github.com/assimp/assimp)
+
+Should support assimp versions 4.0 to 4.1. Version to support is
 determined by querying c library at compile time (or load if not
 previously compiled), with errors if versions don't match at load or
-runtime. (Current assimp from git will be detected as 3.3, but isn't
+runtime. (Current assimp from git will be detected as 5.0, but isn't
 completely binary compatible so might have problems)
 
 
@@ -30,10 +32,9 @@ Allows (among other things) loading of the following formats:
     Milkshape 3D ( .ms3d )
     * TrueSpace ( .cob,.scn )
 
-###################################################
-Fri 27 Dec 2019 05:23:13 UTC
-VYPER9-amd64 #1 SMP VYPER 9.3.9-3vyper9 (2019-12-27)
-###################################################
+
+
+27 December 2019
 
 A brief note about this fork:
 
@@ -45,4 +46,9 @@ have libassimp5x available and that's next) ... then again they may not.
 We're sharing it here in case someone else runs into the same speedbumps we did.
 ;)
 
+A brief note about cloning/installation:
 
+1) Some basic assumptions: sbcl, vim+slimv or emacs+slime, quicklisp.
+2) Clone this repo in ~/quicklisp/local-projects/classimp
+3) sbcl prompt: CL-USER> (ql:quickload :classimp) (or substitute 'classimp'
+   for whatever project you're loading up that calls 'classimp')

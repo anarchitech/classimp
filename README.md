@@ -46,3 +46,9 @@ have libassimp5x available and that's next) ... then again they may not.
 We're sharing it here in case someone else runs into the same speedbumps we did.
 ;)
 
+A brief note about cloning/installation:
+
+1) Some basic assumptions: sbcl, vim+slimv or emacs+slime, quicklisp.
+2) Clone this repo in ~/quicklisp/local-projects/classimp
+3) sbcl prompt: CL-USER> (ql:quickload :classimp) (or substitute 'classimp'
+   for whatever project you're loading up that calls 'classimp')
