@@ -2,15 +2,14 @@
 # classimp
 
 
-common lisp/cffi bindings for Open Asset Import Library (http://www.assimp.org/)
-(https://github.com/assimp/assimp)
+[Common Lisp](https://common-lisp.net/) / [CFFI](https://common-lisp.net/project/cffi/) bindings for the [Open Asset Import Library](http://www.assimp.org/).  
+Github repo [here.](https://github.com/assimp/assimp)
 
-Should support assimp versions 4.0 to 4.1. Version to support is
-determined by querying c library at compile time (or load if not
+**This fork currently supports libassimp4.1.** 
+
+Version to support is determined by querying c library at compile time (or load if not
 previously compiled), with errors if versions don't match at load or
-runtime. (Current assimp from git will be detected as 5.0, but isn't
-completely binary compatible so might have problems)
-
+runtime. 
 
 Allows (among other things) loading of the following formats:
 
@@ -34,19 +33,19 @@ Allows (among other things) loading of the following formats:
 
 
 
-27 December 2019
+**27 December 2019**
 
-A brief note about this fork:
+**A brief note about this fork:**
 
-The original classimp repo hasn't been updated since 2017. The only
-modifications done here facilitated it running on a local machine with
+The [original classimp repo](https://github.com/3b/classimp) hasn't been updated since 2017. The only
+modifications here facilitated running it on a local machine with
 libassimp4.1.  Other changes may be made to "bring it up to speed" (we actually
 have libassimp5x available and that's next) ... then again they may not.
 
 We're sharing it here in case someone else runs into the same speedbumps we did.
-;)
+;)  If you're playing along with some of [cbaggers](https://github.com/cbaggers/) fun [youtube efforts](https://www.youtube.com/watch?v=82o5NeyZtvw) and running a current build of your os of choice/lisp you'll undoubtedly need to do something similar.
 
-A brief note about cloning/installation:
+**A brief note about cloning/installation:**
 
 1) Some basic assumptions: sbcl, vim+slimv or emacs+slime, quicklisp.
 2) Clone this repo in ~/quicklisp/local-projects/classimp
