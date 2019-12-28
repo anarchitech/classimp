@@ -29,3 +29,20 @@ Allows (among other things) loading of the following formats:
     AC3D ( .ac )
     Milkshape 3D ( .ms3d )
     * TrueSpace ( .cob,.scn )
+
+###################################################
+Fri 27 Dec 2019 05:23:13 UTC
+VYPER9-amd64 #1 SMP VYPER 9.3.9-3vyper9 (2019-12-27)
+###################################################
+
+A brief note about this fork:
+
+The original classimp repo hasn't been updated since 2017. The only
+modifications done here facilitated it running on a local machine with
+libassimp4.1.  Other changes may be made to "bring it up to speed" (we actually
+have libassimp5x available and that's next) ... then again they may not.
+
+We're sharing it here in case someone else runs into the same speedbumps we did.
+;)
+
+
