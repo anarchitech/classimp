@@ -5,7 +5,7 @@
 [Common Lisp](https://common-lisp.net/) / [CFFI](https://common-lisp.net/project/cffi/) bindings for the [Open Asset Import Library](http://www.assimp.org/).  
 Github repo [here.](https://github.com/assimp/assimp)
 
-**This fork currently supports libassimp4.1.** 
+**This fork currently supports libassimp4.1. Versions below this are not supported. If you need 3.0-3.3 support clone or fork the original repo.** 
 
 Version to support is determined by querying c library at compile time (or load if not
 previously compiled), with errors if versions don't match at load or
