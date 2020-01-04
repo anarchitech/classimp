@@ -1,11 +1,15 @@
-
 # classimp
 
 
 [Common Lisp](https://common-lisp.net/) / [CFFI](https://common-lisp.net/project/cffi/) bindings for the [Open Asset Import Library](http://www.assimp.org/).  
 Github repo [here.](https://github.com/assimp/assimp)
 
-**This fork currently supports libassimp4.1. Versions below this are not supported. If you need 3.0-3.3 support clone or fork the original repo.** 
+**This fork currently supports libassimp4.1. Versions below this are not supported.**
+ 
+**If you need 3.0-3.3 support only**, clone or fork the [original repo.](https://github.com/3b/classimp).
+
+**If you are running a mix of versions** in your lab that require 3.0-4.1, try using [detvdl's](https://github.com/detvdl/classimp) flavor that's been sitting as a PR
+in the main repo for 2+ years now with no merge. (For 'reasons' we had no need/interest in supporting older versions for our purposes.)
 
 Version to support is determined by querying c library at compile time (or load if not
 previously compiled), with errors if versions don't match at load or
@@ -39,8 +43,7 @@ Allows (among other things) loading of the following formats:
 
 The [original classimp repo](https://github.com/3b/classimp) hasn't been updated since 2017. The only
 modifications here facilitated running it on a local machine with
-libassimp4.1.  Other changes may be made to "bring it up to speed" (we actually
-have libassimp5x available and that's next) ... then again they may not.
+libassimp4.1.  Other changes may be forthcoming ...
 
 We're sharing it here in case someone else runs into the same speedbumps we did.
 ;)  If you're playing along with some of [cbaggers](https://github.com/cbaggers/) fun [youtube efforts](https://www.youtube.com/watch?v=82o5NeyZtvw) and running a current build of your os of choice/lisp you'll undoubtedly need to do something similar.
