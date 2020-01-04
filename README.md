@@ -6,7 +6,7 @@ Github repo [here.](https://github.com/assimp/assimp)
 
 **This fork currently supports libassimp4.1. Versions below this are not supported.**
  
-**If you need 3.0-3.3 support only**, clone or fork the [original repo.](https://github.com/3b/classimp).
+**If you need 3.0-3.3 support only**, clone or fork the [original repo](https://github.com/3b/classimp).
 
 **If you are running a mix of versions** in your lab that require 3.0-4.1, try using [detvdl's](https://github.com/detvdl/classimp) flavor that's been sitting as a PR
 in the main repo for 2+ years now with no merge. (For 'reasons' we had no need/interest in supporting older versions for our purposes.)
