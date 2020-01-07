@@ -54,3 +54,14 @@ We're sharing it here in case someone else runs into the same speedbumps we did.
 2) Clone this repo in ~/quicklisp/local-projects/classimp
 3) sbcl prompt: CL-USER> (ql:quickload :classimp) (or substitute 'classimp'
    for whatever project you're loading up that calls 'classimp')
+
+**Current Builds**
+
+Currently we have this built, tested and running on latest versions of
+SBCL and Quicklisp on the following systems:
+
+* OpenBSD --current AMD64
+* NixOS --stable 5.4.8 kernel (various platforms)
+* Debian (various distros, various platforms)
+* Archinux (various platforms)
+* ChromeOS (Intel platforms)
