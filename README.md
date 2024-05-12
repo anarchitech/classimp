@@ -6,7 +6,7 @@
 **Unmaintained, do not use, slated for deletion in 90 days**
 
 The original [classimp repo](https://github.com/3b/classimp) finally 
-update the bindings last year for assimp-5.2.5 among several other
+updated the bindings last year for assimp-5.2.5 among several other
 tweaks, so run that and beat it into submission for your projects.
 
 We'll be deleting this incredibly high traffic repository within 90-ish 
