@@ -1,6 +1,20 @@
 # classimp
 
 
+# Deprecated: 12.05.2024
+
+**Unmaintained, do not use, slated for deletion in 90 days**
+
+The original [classimp repo](https://github.com/3b/classimp) finally 
+update the bindings last year for assimp-5.2.5 among several other
+tweaks, so run that and beat it into submission for your projects.
+
+We'll be deleting this incredibly high traffic repository within 90-ish 
+days of the above date, (that's May 05 for Les Américains lurking out 
+there.)
+
+---
+
 [Common Lisp](https://common-lisp.net/) / [CFFI](https://common-lisp.net/project/cffi/) bindings for the [Open Asset Import Library](http://www.assimp.org/).  
 assimp repo [here.](https://github.com/assimp/assimp)
 
